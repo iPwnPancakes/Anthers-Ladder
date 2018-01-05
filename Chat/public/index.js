@@ -12,8 +12,11 @@ function updateMessageDisplay() {
     Messages.forEach((message) => {
         let newMessage = document.createElement('li');
         newMessage.textContent = message.date + ': ' + message.message;
+        newMessage.classList.add('message');
         chat.appendChild(newMessage);
     });
+
+    chat.scrollTop = chat.scrollHeight;
 }
 
 function displayNewMessage(message) {
