@@ -1,0 +1,1 @@
+- Create FETCH calls in the public javascript file
