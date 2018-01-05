@@ -1,1 +1,11 @@
-- Create FETCH calls in the public javascript file
+- Add React to be able to use state instead of global Messages array
+- Add multi-user functionality of the chat with Socket.io
+- Add tabs and one page app functionality to those tabs
+
+- Use MongoDB to store data
+- Cache last date visited and the last 50 messages seen
+- Use Socket.io to sync all messages between browsers
+
+- Add user/password functionality
+- Add profiles
+- Add private messaging functionality
