@@ -2,23 +2,16 @@ let path = require('path');
 
 module.exports = {
     entry: {
-        './src/build/server': './src/server.js',
-        './dist/browser': './dist/index.js'
+        './dist/browser': ["babel-polyfill", "./dist/index.js"]
     },
     output: {
         filename: '[name].bundle.js',
         path: __dirname
     },
-    target: 'node',
     module: {
-        rules: [
-            {
-                test: /\.node$/,
-                use: [
-                    { loader: 'binary-loader' }
-                ]
-            }
+        loaders: [
+            { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader", query: { presets: ['env'] } }
         ],
-        noParse: /ws/
+        noParse: /ws|.node/
     }
 }

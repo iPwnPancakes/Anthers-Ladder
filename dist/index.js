@@ -1,3 +1,5 @@
+let io = require('socket.io-client');
+
 let Messages = [];
 
 function updateMessageDisplay() {
@@ -63,6 +65,29 @@ function createMessage(e) {
             }
         });
     }
+}
+let Model = () => {
+    let Messages = [];
+
+    return {
+        addMessage: (message, callback) => {
+            let now = new Date();
+            now = now.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+            Messages.push({
+                date: now,
+                message
+            });
+            callback();
+        }
+    }
+}
+
+let View = () => {
+    
+}
+
+let Controller = () => {
+
 }
 
 window.onload = () => {
