@@ -1,5 +1,3 @@
-// let io = require('socket.io-client');
-
 let Messages = [];
 
 function updateMessageDisplay() {
