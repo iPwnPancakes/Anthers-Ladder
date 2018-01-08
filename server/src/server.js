@@ -13,13 +13,17 @@ server.listen(process.env.PORT || 8080, () => {
 });
 
 io.on('connection', (socket) => {
-    console.log('connection')
-    io.emit('this', {will: 'be received by erryone'})
+    
+    socket.on('chat message', (message) => {
+        console.log('Message received: ' + message);
+    });
+
     socket.on('disconnect', () => {
         io.emit('user disconnected');
         console.log('disconnect')
-    })
-})
+    });
+
+});
 
 app.use('/', express.static(distPath));
 app.use('/api', routes);
