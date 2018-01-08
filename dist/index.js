@@ -1,4 +1,4 @@
-let io = require('socket.io-client');
+// let io = require('socket.io-client');
 
 let Messages = [];
 
@@ -32,7 +32,7 @@ function displayNewMessage(message) {
 }
 
 function submitMessage(message, callback) {
-    fetch('http://localhost:8080/api/message', {
+    fetch('/api/message', {
         method: 'post',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -66,29 +66,30 @@ function createMessage(e) {
         });
     }
 }
-let Model = () => {
-    let Messages = [];
 
-    return {
-        addMessage: (message, callback) => {
-            let now = new Date();
-            now = now.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
-            Messages.push({
-                date: now,
-                message
-            });
-            callback();
-        }
-    }
-}
+// let Model = () => {
+//     let Messages = [];
 
-let View = () => {
+//     return {
+//         addMessage: (message, callback) => {
+//             let now = new Date();
+//             now = now.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+//             Messages.push({
+//                 date: now,
+//                 message
+//             });
+//             callback();
+//         }
+//     }
+// }
+
+// let View = () => {
     
-}
+// }
 
-let Controller = () => {
+// let Controller = () => {
 
-}
+// }
 
 window.onload = () => {
     document.getElementById('sendMessage').onclick = createMessage;

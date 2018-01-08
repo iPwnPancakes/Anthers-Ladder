@@ -2,16 +2,38 @@ let path = require('path');
 
 module.exports = {
     entry: {
-        './dist/browser': ["babel-polyfill", "./dist/index.js"]
+        browser: './dist/index.js'
     },
     output: {
         filename: '[name].bundle.js',
-        path: __dirname
+        path: __dirname + '/dist/'
+    },
+    resolve: {
+        alias: {
+            'server': './src/server',
+            'routes': './src/routes/api'
+        },
+        modules: ['node_modules']
     },
     module: {
-        loaders: [
-            { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader", query: { presets: ['env'] } }
+        rules: [
+            {
+                test: path.join(__dirname, 'dist'),
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            }
         ],
         noParse: /ws|.node/
-    }
+    },
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        compress: true,
+        port: 8080
+    },
+    target: 'web'
 }
