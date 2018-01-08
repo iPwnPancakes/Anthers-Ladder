@@ -14,11 +14,10 @@ router.get('/', (req, res) => {
 });
 
 router.post('/message', (req, res) => {
-    console.log(req.body)
     let response = JSON.stringify({
         status: 201,
         statusText: 'Created',
-        text: req.body.text
+        message: req.body.message
     });
     res.send(response);
 });

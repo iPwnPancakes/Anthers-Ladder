@@ -9,13 +9,11 @@ module.exports = {
         path: __dirname + '/dist/'
     },
     resolve: {
-        modules: ['node_modules']
+        modules: ['./node_modules']
     },
     module: {
         rules: [
             {
-                test: path.join(__dirname, 'dist'),
-                exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -23,8 +21,7 @@ module.exports = {
                     }
                 }
             }
-        ],
-        noParse: /ws|.node/
+        ]
     },
     devServer: {
         contentBase: path.join(__dirname, "dist"),
