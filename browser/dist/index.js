@@ -30,7 +30,7 @@ function displayNewMessage(message) {
 }
 
 function submitMessage(message, callback) {
-    fetch('http://localhost:8080/api/message', {
+    fetch('/api/message', {
         method: 'post',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -59,6 +59,7 @@ function createMessage(e) {
             if(err || res.status !== 201) {
                 console.log(err);
             } else {
+                console.log(res);
                 displayNewMessage(res.text);
             }
         });

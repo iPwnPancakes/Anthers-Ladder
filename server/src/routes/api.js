@@ -3,19 +3,10 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 const router = express.Router();
-const io = require('socket.io');
 
 // Setting up router middleware
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
-
-// // Defining socket.io event handlers
-// io.on('connection', (socket) => {
-//     socket.emit('news', { hello: 'world' });
-//     socket.on('message', (data) => {
-//         console.log(data);
-//     });
-// });
 
 // Defining routes and their logic
 router.get('/', (req, res) => {
@@ -24,11 +15,12 @@ router.get('/', (req, res) => {
 
 router.post('/message', (req, res) => {
     console.log(req.body)
-    res.send({
+    let response = JSON.stringify({
         status: 201,
         statusText: 'Created',
         text: req.body.text
     });
+    res.send(response);
 });
 
 router.put('/message/:id', (req, res) => {
