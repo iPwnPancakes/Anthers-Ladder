@@ -7,7 +7,10 @@ class ChatRoom extends React.Component {
     
     render() {
         return (
-            <p>chatroom</p>
+            <form>
+                <input type="text" />
+                <button id="sendMessage">Send</button>
+            </form>
         );
     }
 }
