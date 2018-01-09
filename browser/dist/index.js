@@ -1,3 +1,5 @@
+// TODO Convert this file to a React UI for easier state/functionality management
+
 let io = require('socket.io-client');
 let socket = io();
 
