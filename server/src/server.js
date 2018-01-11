@@ -14,8 +14,8 @@ server.listen(process.env.PORT || 8080, () => {
 
 io.on('connection', (socket) => {
     
-    socket.on('chat message', (message) => {
-        console.log('Message received: ' + message);
+    socket.on('broadcasted message', (message) => {
+        socket.broadcast.emit('broadcasted message', message);
     });
 
     socket.on('disconnect', () => {

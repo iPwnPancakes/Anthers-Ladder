@@ -4,7 +4,8 @@
   "description": "Front end to my anthers ladder clone",
   "main": "./dist/index.html",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "watch": "webpack --watch"
   },
   "keywords": [
     "anthers",
@@ -14,11 +15,14 @@
   "author": "Daniel Buenrrostro",
   "license": "MIT",
   "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "socket.io-client": "^2.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.36",
     "@babel/preset-env": "^7.0.0-beta.36",
+    "@babel/preset-react": "^7.0.0-beta.37",
     "babel-loader": "^8.0.0-beta.0",
     "webpack": "^3.10.0"
   }
