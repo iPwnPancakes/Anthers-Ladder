@@ -6,9 +6,20 @@ class InputArea extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
     
+    validateInput(input) {
+        if(!input || input === '') {
+            return 'Input does not exist!';
+        }
+        return input;
+    }
+    
     handleClick(e) {
         e.preventDefault();
-        this.refs.inputText.value = null;
+        let message = this.refs.inputText.value;
+        if(message === this.validateInput(message)) {
+            this.props.addMessage(message);
+            this.refs.inputText.value = null;
+        }
     }
     
     render() {
