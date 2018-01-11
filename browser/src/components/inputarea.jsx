@@ -18,6 +18,7 @@ class InputArea extends React.Component {
         let message = this.refs.inputText.value;
         if(message === this.validateInput(message)) {
             this.props.addMessage(message);
+            this.props.sendMessage(message);
             this.refs.inputText.value = null;
         }
     }
