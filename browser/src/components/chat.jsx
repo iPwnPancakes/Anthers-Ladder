@@ -1,5 +1,5 @@
 let React = require('react');
-let ChatRoom = require('./chatroom.jsx');
+let MessageArea = require('./messagearea.jsx');
 let InputArea = require('./inputarea.jsx');
 
 class Chat extends React.Component {
@@ -11,10 +11,14 @@ class Chat extends React.Component {
         return (
             <div>
                 <h1>Chat</h1>
-                <ChatRoom />
+                <MessageArea />
                 <InputArea />
             </div>
         );
+    }
+    
+    addMessage(event) {
+        
     }
 }
 

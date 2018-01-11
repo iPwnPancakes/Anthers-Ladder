@@ -3,15 +3,8 @@
     width: 400px;
 
     border: 1px solid black;
-
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-#chatItems {
-    height: inherit;
-    width: inherit;
-    margin: 0px;
+    
+    margin: 10px 0px 10px 0px;
     padding: 0px;
     overflow: scroll;
 }

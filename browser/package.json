@@ -4,7 +4,8 @@
   "description": "Front end to my anthers ladder clone",
   "main": "./dist/index.html",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "watch": "webpack --watch"
   },
   "keywords": [
     "anthers",
