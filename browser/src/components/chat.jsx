@@ -32,19 +32,29 @@ class Chat extends React.Component {
     }
     
     addMessage(message) {
-        fetch('/api/messages', {
-            method: 'post',
+        fetch('/api/message', {
+            method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ message })
+            body: JSON.stringify({ message: message })
         })
-        .then(res => res.json())
         .then(res => {
-            console.log(res);
+            if(res.ok) {
+                return res.json();
+            } else {
+                throw new Error(res.status + ' ' + res.statusText);
+            }
         })
-        .catch(err => { console.log(Error(err)) })
+        .then(res => {
+            this.state.Messages.push({
+                message: message,
+                time: getCurrentTime()
+            });
+            this.setState({ Messages: this.state.Messages });
+        })
+        .catch(console.log)
     }
 }
 
