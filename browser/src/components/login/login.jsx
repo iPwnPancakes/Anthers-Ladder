@@ -5,9 +5,26 @@ class Login extends React.Component {
         super(props);
     }
 
+    submitUser(username, password) {
+        fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        })
+        .then(res => res.json())
+        .then(console.log)
+    }
+
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.username.value + ' ' + this.password.value);
+        let username = this.username.value;
+        let password = this.password.value;
+        this.submitUser(username, password);
     }
 
     render() {
