@@ -10,6 +10,8 @@ const io = require('socket.io')(server);
 
 // Set up variables
 const PORT = process.env.PORT || 8080;
+const DBPORT = process.env.DBPORT || 27017;
+const localhost = process.env.IP || 'localhost';
 const distPath = path.resolve(__dirname, '..', '..', 'browser', 'dist');
 
 // App logic

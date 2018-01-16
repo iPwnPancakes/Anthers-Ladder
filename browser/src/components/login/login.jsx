@@ -6,7 +6,7 @@ class Login extends React.Component {
     }
 
     submitUser(username, password) {
-        fetch('/api/login', {
+        fetch('/api/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
