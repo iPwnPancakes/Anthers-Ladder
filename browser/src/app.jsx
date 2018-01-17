@@ -1,8 +1,8 @@
-let React = require('react');
-let ReactDOM = require('react-dom');
-let Login = require('./components/login/login.jsx');
-let Chat = require('./components/chat/chat.jsx');
-
+const React = require('react');
+const ReactDOM = require('react-dom');
+const Navigation = require('./components/navbar/navbar.jsx');
+const Chat = require('./components/chat/chat.jsx');
+const Footer = require('./components/footer/footer.jsx');
 
 class App extends React.Component {
     constructor(props) {
@@ -12,8 +12,11 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Login />
+                <Navigation />
+
                 <Chat />
+
+                <Footer />
             </div>
         )
     }

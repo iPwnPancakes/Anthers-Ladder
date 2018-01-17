@@ -5,6 +5,10 @@ class Login extends React.Component {
         super(props);
     }
 
+    toggleVisible() {
+        this.form.style.display = (this.form.style.display === 'none') ? 'block' : 'none';
+    }
+
     submitUser(username, password) {
         fetch('/api/register', {
             method: 'POST',
@@ -29,7 +33,7 @@ class Login extends React.Component {
 
     render() {
         return (
-            <form>
+            <form ref={form => { this.form = form }} style={{ display: 'none' }}>
                 <label htmlFor='username'>Username</label>
                 <input 
                     type='text' 
