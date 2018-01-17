@@ -15,8 +15,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-    if(req.body && req.body.username && req.body.password) {
-        storeUser(req.body.username, req.body.password, (err, success) => {
+    if(req.body && req.body.username && req.body.password && req.body.email) {
+        storeUser(req.body.username, req.body.password, req.body.email, (err, success) => {
             if(err) throw Error('Error storing user info in db!');
             res.end(JSON.stringify(success));
         });
@@ -42,16 +42,15 @@ router.delete('/message/:id', (req, res) => {
 });
 
 // Helper functions
-function storeUser(username, password, callback) {
+function storeUser(username, password, email, callback) {
     
     bcrypt.genSalt(15)
         .then(salt => {
             return bcrypt.hash(password, salt)
         })
         .then(encrypted => {
-            // Store encrypted into db
+            callback(null, { username, password, email, encrypted });
         })
-        .then(console.log)
         .catch(callback);
 }
 
