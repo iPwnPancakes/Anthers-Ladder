@@ -4,6 +4,10 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
     }
+    
+    isVisible() {
+        return this.form.style.display === 'block';
+    }
 
     toggleVisible() {
         this.form.style.display = (this.form.style.display === 'none') ? 'block' : 'none';
@@ -36,7 +40,7 @@ class Login extends React.Component {
 
     render() {
         return (
-            <form ref={form => { this.form = form }} style={{ display: 'none' }}>
+            <form id='login' ref={form => { this.form = form }} style={{ display: 'none' }}>
                 <label htmlFor='username'>Username</label>
                 <input 
                     type='text' 
@@ -44,7 +48,7 @@ class Login extends React.Component {
                     placeholder='username'
                     ref={username => { this.username = username }}
                 />
-
+                <br/>
                 <label htmlFor='password'>Password</label>
                 <input 
                     type='text' 
@@ -52,7 +56,7 @@ class Login extends React.Component {
                     placeholder='password'
                     ref={(password) => { this.password = password }}
                 />
-
+                <br/>
                 <button type='submit' onClick={this.handleSubmit.bind(this)}>Submit</button>
             </form>
         )

@@ -18,13 +18,17 @@ class App extends React.Component {
         console.log(username);
         console.log(this.state)
     }
+    
+    toggleChat() {
+        this.chat.toggleVisible();
+    }
 
     render() {
         return (
             <div>
-                <Navigation logIn={this.logIn.bind(this)}/>
+                <Navigation logIn={this.logIn.bind(this)} toggleChat={this.toggleChat.bind(this)} />
 
-                <Chat />
+                <Chat ref={chat => { this.chat = chat }} />
 
                 <Footer />
             </div>

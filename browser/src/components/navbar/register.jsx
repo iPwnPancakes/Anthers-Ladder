@@ -6,6 +6,10 @@ class Register extends React.Component {
         super(props);
     }
     
+    isVisible() {
+        return this.form.style.display === 'block';
+    }
+    
     toggleVisible() {
         this.form.style.display = (this.form.style.display === 'none') ? 'block' : 'none';
     }
@@ -44,7 +48,7 @@ class Register extends React.Component {
 
     render() {
         return (
-            <form ref={form => { this.form = form }} style={{ display: 'none' }}>
+            <form id='register' ref={form => { this.form = form }} style={{ display: 'none' }}>
                 <label htmlFor='email'>Email</label>
                 <input 
                     type='email' 
@@ -52,7 +56,7 @@ class Register extends React.Component {
                     placeholder='E-Mail'
                     ref={email => { this.email = email }}
                 />
-
+                <br/>
                 <label htmlFor='username'>Username</label>
                 <input 
                     type='text' 
@@ -60,7 +64,7 @@ class Register extends React.Component {
                     placeholder='Username'
                     ref={username => { this.username = username }}
                 />
-
+                <br/>
                 <label htmlFor='password'>Password</label>
                 <input 
                     type='text' 
@@ -68,7 +72,7 @@ class Register extends React.Component {
                     placeholder='Password'
                     ref={(password) => { this.password = password }}
                 />
-
+                <br/>
                 <label htmlFor='confirmPassword'>Confirm Password</label>
                 <input 
                     type='text' 
@@ -76,7 +80,7 @@ class Register extends React.Component {
                     placeholder='Confirm Password'
                     ref={(confirmPassword) => { this.confirmPassword = confirmPassword }}
                 />
-
+                <br/>
                 <button type='submit' onClick={this.handleSubmit.bind(this)}>Submit</button>
             </form>
         )
