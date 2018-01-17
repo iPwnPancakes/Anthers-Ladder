@@ -33,10 +33,6 @@ router.post('/login', (req, res) => {
     // bcrypt.compare given password with encrypted password from db
 });
 
-router.put('/message/:id', (req, res) => {
-    res.send('Updated!');
-});
-
 router.delete('/message/:id', (req, res) => {
     res.send('Deleted');
 });

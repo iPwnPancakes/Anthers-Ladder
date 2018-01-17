@@ -25,11 +25,11 @@ class Navigation extends React.Component {
                     <li>Chat</li>
                     <li>
                         <span onClick={this.onRegisterClick.bind(this)}>Register</span>
-                        <Register ref={registerForm => { this.registerForm = registerForm }} />
+                        <Register ref={registerForm => { this.registerForm = registerForm }} logIn={this.props.logIn} />
                     </li>
                     <li>
                         <span onClick={this.onLoginNavClick.bind(this)}>Login</span>
-                        <Login ref={(loginForm) => { this.loginForm = loginForm }} />
+                        <Login ref={(loginForm) => { this.loginForm = loginForm }} logIn={this.props.logIn} />
                     </li>
                 </ul>
             </div>

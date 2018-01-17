@@ -27,7 +27,9 @@ class Register extends React.Component {
             })
         })
         .then(res => res.json())
-        .then(console.log)
+        .then(res => {
+            this.props.logIn(res.username);
+        })
         .catch(console.log)
     }
 

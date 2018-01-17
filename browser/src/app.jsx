@@ -7,12 +7,22 @@ const Footer = require('./components/footer/footer.jsx');
 class App extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            loggedIn: false
+        }
+    }
+    
+    logIn(username) {
+        this.state.loggedIn = true;
+        this.setState({ loggedIn: this.state.loggedIn });
+        console.log(username);
+        console.log(this.state)
     }
 
     render() {
         return (
             <div>
-                <Navigation />
+                <Navigation logIn={this.logIn.bind(this)}/>
 
                 <Chat />
 
