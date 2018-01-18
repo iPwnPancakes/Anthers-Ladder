@@ -48,40 +48,48 @@ class Register extends React.Component {
 
     render() {
         return (
-            <form id='register' ref={form => { this.form = form }} style={{ display: 'none' }}>
-                <label htmlFor='email'>Email</label>
-                <input 
-                    type='email' 
-                    name='email' 
-                    placeholder='E-Mail'
-                    ref={email => { this.email = email }}
-                />
-                <br/>
-                <label htmlFor='username'>Username</label>
-                <input 
-                    type='text' 
-                    name='username' 
-                    placeholder='Username'
-                    ref={username => { this.username = username }}
-                />
-                <br/>
-                <label htmlFor='password'>Password</label>
-                <input 
-                    type='text' 
-                    name='password' 
-                    placeholder='Password'
-                    ref={(password) => { this.password = password }}
-                />
-                <br/>
-                <label htmlFor='confirmPassword'>Confirm Password</label>
-                <input 
-                    type='text' 
-                    name='password' 
-                    placeholder='Confirm Password'
-                    ref={(confirmPassword) => { this.confirmPassword = confirmPassword }}
-                />
-                <br/>
-                <button type='submit' onClick={this.handleSubmit.bind(this)}>Submit</button>
+            <form id='register' className='container' ref={form => { this.form = form }} style={{ display: 'none' }}>
+                <div className='form-group'>
+                    <label htmlFor='email'>Email</label>
+                    <input
+                        className='form-control form-control-sm'
+                        type='email' 
+                        name='email' 
+                        placeholder='E-Mail'
+                        ref={email => { this.email = email }}
+                    />
+                </div>
+                <div className='form-group'>
+                    <label htmlFor='username'>Username</label>
+                    <input 
+                        className='form-control form-control-sm'
+                        type='text' 
+                        name='username' 
+                        placeholder='Username'
+                        ref={username => { this.username = username }}
+                    />
+                </div>
+                <div className='form-group'>
+                    <label htmlFor='password'>Password</label>
+                    <input 
+                        className='form-control form-control-sm'
+                        type='text' 
+                        name='password' 
+                        placeholder='Password'
+                        ref={(password) => { this.password = password }}
+                    />
+                </div>
+                <div className='form-group'>
+                    <label htmlFor='confirmPassword'>Confirm Password</label>
+                    <input 
+                        className='form-control form-control-sm'
+                        type='text' 
+                        name='password' 
+                        placeholder='Confirm Password'
+                        ref={(confirmPassword) => { this.confirmPassword = confirmPassword }}
+                    />
+                </div>
+                <button type='submit' className='btn btn-outline-success' onClick={this.handleSubmit.bind(this)}>Create Account</button>
             </form>
         )
     }

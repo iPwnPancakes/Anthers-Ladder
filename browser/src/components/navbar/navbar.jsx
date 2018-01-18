@@ -30,16 +30,29 @@ class Navigation extends React.Component {
 
     render() {
         return (
-            <div id='navbar'>
-                <ul>
-                    <li><a href={window.location.href}>Home</a></li>
-                    <li><a href='' onClick={this.onChatClick.bind(this)}>Chat</a></li>
-                    <li> <a href='' onClick={this.onRegisterClick.bind(this)}>Register</a> </li>
-                    <li> <a href='' onClick={this.onLoginNavClick.bind(this)}>Login</a> </li>
-                    <Register ref={registerForm => { this.registerForm = registerForm }} logIn={this.props.logIn} />
-                    <Login ref={(loginForm) => { this.loginForm = loginForm }} logIn={this.props.logIn} />
-                </ul>
-            </div>
+            
+                <nav id='navbar' className='navbar navbar-light navbar-fixed-top'>
+                    <div className='container-fluid'>
+                        <ul className='nav navbar-expand-lg'>
+                            <li className='navbar-header'>
+                                <a href='#' className='navbar-brand' href={window.location.href}>Home</a>
+                            </li>
+                            <li className='nav-item'>
+                                <a href='#' className='nav-link' onClick={this.onChatClick.bind(this)}>Chat</a>
+                            </li>
+                        </ul>
+                        <ul id='forms' className='nav navbar-right'>
+                            <li className='nav-item'> 
+                                <button className='btn btn-sm nav-link' onClick={this.onRegisterClick.bind(this)}>Register</button> 
+                            </li>
+                            <li className='nav-item'>
+                                <button className='btn btn-sm nav-link' onClick={this.onLoginNavClick.bind(this)}>Login</button>
+                            </li>
+                        </ul>
+                        <Register ref={registerForm => { this.registerForm = registerForm }} logIn={this.props.logIn} />
+                        <Login ref={(loginForm) => { this.loginForm = loginForm }} logIn={this.props.logIn} />
+                    </div>
+                </nav>
         )
     }
 }

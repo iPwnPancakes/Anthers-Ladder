@@ -40,24 +40,26 @@ class Login extends React.Component {
 
     render() {
         return (
-            <form id='login' ref={form => { this.form = form }} style={{ display: 'none' }}>
+            <form id='login' className='form-inline' ref={form => { this.form = form }} style={{ display: 'none' }}>
                 <label htmlFor='username'>Username</label>
                 <input 
+                    className='form-control form-control-sm'
                     type='text' 
                     name='username' 
                     placeholder='username'
                     ref={username => { this.username = username }}
                 />
-                <br/>
+                
                 <label htmlFor='password'>Password</label>
                 <input 
+                    className='form-control form-control-sm'
                     type='text' 
                     name='password' 
                     placeholder='password'
                     ref={(password) => { this.password = password }}
                 />
-                <br/>
-                <button type='submit' onClick={this.handleSubmit.bind(this)}>Submit</button>
+                
+                <button type='submit' className='btn btn-outline-success' onClick={this.handleSubmit.bind(this)}>Submit</button>
             </form>
         )
     }
