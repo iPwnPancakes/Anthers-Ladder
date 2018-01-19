@@ -17,9 +17,13 @@ class Chat extends React.Component {
         });
     }
     
+    toggleVisible() {
+        this.chat.style.display = (this.chat.style.display === 'none') ? 'block' : 'none';
+    }
+    
     render() {
         return (
-            <div>
+            <div className='container' style={{ marginTop: '10px' }}ref={chat => { this.chat = chat }} >
                 <h1>Chat</h1>
                 <MessageArea Messages={this.state.Messages} />
                 <InputArea 
@@ -32,25 +36,6 @@ class Chat extends React.Component {
     }
     
     sendMessage(message) {
-        // fetch('/api/message', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json, text/plain, */*',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({ message: message })
-        // })
-        // .then(res => {
-        //     if(res.ok) {
-        //         return res.json();
-        //     } else {
-        //         throw new Error(res.status + ' ' + res.statusText);
-        //     }
-        // })
-        // .then(res => {
-        //     console.log('Message Sent!');
-        // })
-        // .catch(console.log)
         io.emit('broadcasted message', message);
     }
     

@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 
 const router = express.Router();
 
@@ -13,22 +14,48 @@ router.get('/', (req, res) => {
     res.send('got get!');
 });
 
-router.post('/message', (req, res) => {
-    let response = JSON.stringify({
-        status: 201,
-        statusText: 'Created',
-        message: req.body.message
-    });
-    
-    res.send(response);
-});
+router.post('/register', (req, res) => {
+    if(req.body && req.body.username && req.body.password && req.body.email) {
+        encryptPassword(req.body.password, (err, encrypted) => {
+            if(err) throw Error('Error storing user info in db!');
+            
+            let response = {
+                username: req.body.username,
+                password: req.body.password,
+                email: req.body.email,
+                encrypted: encrypted
+            }
+            
+            res.end(JSON.stringify(response));
+        });
+    } else {
+        res.end(JSON.stringify({
+            status: 500,
+            statusText: 'Error getting username or password from request body!'
+        }));
+    }
+})
 
-router.put('/message/:id', (req, res) => {
-    res.send('Updated!');
+router.post('/login', (req, res) => {
+    // Lookup by username
+    // bcrypt.compare given password with encrypted password from db
 });
 
 router.delete('/message/:id', (req, res) => {
     res.send('Deleted');
 });
+
+// Helper functions
+function encryptPassword(password, callback) {
+    
+    bcrypt.genSalt(15)
+        .then(salt => {
+            return bcrypt.hash(password, salt)
+        })
+        .then(encrypted => {
+            callback(null, { password, encrypted });
+        })
+        .catch(callback);
+}
 
 module.exports = router;
