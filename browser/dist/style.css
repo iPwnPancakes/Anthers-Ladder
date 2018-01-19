@@ -12,7 +12,14 @@
 #register, #login {
     margin: 10px;
     padding: 10px;
-    width: 40%;
+}
+
+form div input {
+    margin: 5px 0 5px 0;
+}
+
+#loginBtn {
+    margin: 10px 0 0 0;
 }
 
 #forms {
@@ -20,15 +27,14 @@
 }
 
 #loginDropdown {
+    right: 0;
+    left: inherit;
+    margin-top: 10px;
 }
 
 .btn {
     margin-left: 5px;
     margin-right: 5px;
-}
-
-#register > input, #login > input {
-    
 }
 
 .chatList {

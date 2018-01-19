@@ -23,7 +23,7 @@ class Chat extends React.Component {
     
     render() {
         return (
-            <div className='container' ref={chat => { this.chat = chat }} >
+            <div className='container' style={{ marginTop: '10px' }}ref={chat => { this.chat = chat }} >
                 <h1>Chat</h1>
                 <MessageArea Messages={this.state.Messages} />
                 <InputArea 
