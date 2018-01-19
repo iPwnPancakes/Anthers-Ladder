@@ -14,23 +14,19 @@ class Navigation extends React.Component {
     
     onRegisterClick(event) {
         event.preventDefault();
-        if(this.loginForm.isVisible()) {
-            this.loginForm.toggleVisible();
-        }
-        this.registerForm.toggleVisible();
+        // Redirect to register page
     }
 
     onLoginNavClick(event) {
         event.preventDefault();
-        if(this.registerForm.isVisible()) {
-            this.registerForm.toggleVisible();
-        }
-        this.loginForm.toggleVisible();
+        // if(this.registerForm.isVisible()) {
+        //     this.registerForm.toggleVisible();
+        // }
+        // this.loginForm.toggleVisible();
     }
 
     render() {
         return (
-            
                 <nav id='navbar' className='navbar navbar-light navbar-fixed-top'>
                     <div className='container-fluid'>
                         <ul className='nav navbar-expand-lg'>
@@ -45,8 +41,13 @@ class Navigation extends React.Component {
                             <li className='nav-item'> 
                                 <button className='btn btn-sm nav-link' onClick={this.onRegisterClick.bind(this)}>Register</button> 
                             </li>
-                            <li className='nav-item'>
-                                <button className='btn btn-sm nav-link' onClick={this.onLoginNavClick.bind(this)}>Login</button>
+                            <li className='nav-item dropdown'>
+                                <div className='btn-group'>
+                                <button href='#' className='btn dropdown-toggle' data-toggle='dropdown' onClick={this.onLoginNavClick.bind(this)} aria-haspopup="true" aria-expanded="false">Login</button>
+                                    <div id='loginDropdown' className='dropdown-menu dropdown-menu-right' role='menu'>
+                                        <button>Yes</button>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                         <Register ref={registerForm => { this.registerForm = registerForm }} logIn={this.props.logIn} />
