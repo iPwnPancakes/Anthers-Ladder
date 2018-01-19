@@ -11,19 +11,6 @@ class Navigation extends React.Component {
         event.preventDefault();
         this.props.toggleChat();
     }
-    
-    onRegisterClick(event) {
-        event.preventDefault();
-        // Redirect to register page
-    }
-
-    onLoginNavClick(event) {
-        event.preventDefault();
-        // if(this.registerForm.isVisible()) {
-        //     this.registerForm.toggleVisible();
-        // }
-        // this.loginForm.toggleVisible();
-    }
 
     render() {
         return (

@@ -4,14 +4,6 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
     }
-    
-    isVisible() {
-        return this.form.style.display === 'block';
-    }
-
-    toggleVisible() {
-        this.form.style.display = (this.form.style.display === 'none') ? 'block' : 'none';
-    }
 
     submitUser(username, password) {
         fetch('/api/login', {
