@@ -12,7 +12,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node ./src/server.js"
+    "start": "node ./src/server.js DBPORT=27017"
   },
   "repository": {
     "type": "git",

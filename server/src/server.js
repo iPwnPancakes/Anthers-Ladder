@@ -1,7 +1,7 @@
+// Set up dependencies
 const path = require('path');
 const routes = require('./routes/api.js');
 const express = require('express');
-const mongo = require('mongodb').MongoClient;
 
 // Set up instances
 const app = express();
@@ -10,15 +10,19 @@ const io = require('socket.io')(server);
 
 // Set up variables
 const PORT = process.env.PORT || 8080;
-const DBPORT = process.env.DBPORT || 27017;
-const localhost = process.env.IP || 'localhost';
 const distPath = path.resolve(__dirname, '..', '..', 'browser', 'dist');
 
-// App logic
+// Set up connections
 server.listen(PORT, () => {
     console.log('Listening to port: ' + PORT);
 });
 
+const mongo = require('./utils/mongoInstance.js').makeConnection((err) => { 
+    if(err) throw Error(err) 
+    // Put initialization stuff here
+});
+
+// App logic
 io.on('connection', (socket) => {
     socket.on('broadcasted message', (message) => {
         socket.broadcast.emit('broadcasted message', message);
