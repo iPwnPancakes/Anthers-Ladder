@@ -18,7 +18,12 @@ class Login extends React.Component {
         })
         .then(res => res.json())
         .then(res => {
-            this.props.logIn(res.username);
+            if(res.status === 200) {
+                console.log(res.username + ' Logged In!');
+                this.props.logIn(res.username);
+            } else {
+                console.log('Error: ' + res.status + ' ' + res.statusText);
+            }
         })
         .catch(console.log)
     }
@@ -35,7 +40,7 @@ class Login extends React.Component {
             <form id='login' className='form-inline' ref={form => { this.form = form }} >
             <div>
                 <label htmlFor='username'>Username</label>
-                <input 
+                <input
                     className='form-control form-control-sm'
                     type='text' 
                     name='username' 
@@ -53,10 +58,9 @@ class Login extends React.Component {
                     ref={(password) => { this.password = password }}
                 />
             </div>
-                <button 
-                    id='loginBtn' 
+                <button
                     type='submit' 
-                    className='btn btn-outline-success btn-block'
+                    className='btn btn-outline-success btn-block formButton'
                     onClick={this.handleSubmit.bind(this)}
                 >
                     Submit

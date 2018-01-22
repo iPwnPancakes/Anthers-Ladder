@@ -23,21 +23,14 @@ router.post('/register', (req, res) => {
         encryptPassword(req.body.password, (err, encrypted) => {
             if(err) throw Error('Error storing user info in db!');
             
-            let response = {
-                username: req.body.username,
-                password: req.body.password,
-                email: req.body.email,
-                encrypted: encrypted
-            }
-            
             db.collection('users').insert({
                 username: req.body.username,
-                password: req.body.password,
                 email: req.body.email,
-                encrypted: encrypted
+                password: encrypted
             }, (err, result) => {
                 if(err) throw Error(err);
                 console.log('User ' + req.body.username + ' registered!');
+                res.send(JSON.stringify({ status: 201, statusText: 'Created', username: req.body.username }));
             });
         });
     } else {
@@ -51,15 +44,21 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
     db.collection('users').findOne({
         'username': req.body.username
-    }).then((found) => {
-        if(found) {
-            bcrypt.compare(req.body.password, found.password)
-            .then((result) => {
-                if(result === true) {
+    })
+    .then((foundUsername) => {
+        if(foundUsername) {
+            bcrypt.compare(req.body.password, foundUsername.password)
+            .then((passwordMatch) => {
+                if(passwordMatch === true) {
                     res.send(JSON.stringify({ 
                         status: 200, 
                         statusText: 'Found',
                         username: req.body.username
+                    }));
+                } else {
+                    res.send(JSON.stringify({
+                        status: 403,
+                        statusText: 'Username/Password Not Found'
                     }));
                 }
             })
@@ -70,7 +69,6 @@ router.post('/login', (req, res) => {
             }));
         }
     })
-    // bcrypt.compare given password with encrypted password from db
 });
 
 router.delete('/message/:id', (req, res) => {
@@ -79,13 +77,12 @@ router.delete('/message/:id', (req, res) => {
 
 // Helper functions
 function encryptPassword(password, callback) {
-    
     bcrypt.genSalt(15)
         .then(salt => {
             return bcrypt.hash(password, salt)
         })
         .then(encrypted => {
-            callback(null, { password, encrypted });
+            callback(null, encrypted);
         })
         .catch(callback);
 }

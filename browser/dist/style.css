@@ -18,16 +18,18 @@ form div input {
     margin: 5px 0 5px 0;
 }
 
-#loginBtn {
+.formButton {
     margin: 10px 0 0 0;
-}
-
-#forms {
-    margin-right: 20px;
 }
 
 #loginDropdown {
     right: 0;
+    left: inherit;
+    margin-top: 10px;
+}
+
+#registerDropdown {
+    right: -50px;
     left: inherit;
     margin-top: 10px;
 }

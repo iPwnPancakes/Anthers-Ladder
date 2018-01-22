@@ -25,19 +25,19 @@ class Navigation extends React.Component {
                             </li>
                         </ul>
                         <ul id='forms' className='nav navbar-right'>
-                            <li className='nav-item'> 
-                                <button className='btn'>Register</button> 
+                            <li className='nav-item dropdown'> 
+                                <button className='btn dropdown-toggle' data-toggle='dropdown' aria-haspopup="true" aria-expanded="false">Register </button> 
+                                <div id='registerDropdown' className='dropdown-menu' role='menu'>
+                                    <Register ref={registerForm => { this.registerForm = registerForm }} logIn={this.props.logIn} />
+                                </div>
                             </li>
                             <li className='nav-item dropdown'>
-                                <div className='btn-group'>
-                                <button href='#' className='btn dropdown-toggle' data-toggle='dropdown' aria-haspopup="true" aria-expanded="false">Login </button>
-                                    <div id='loginDropdown' className='dropdown-menu' role='menu'>
-                                        <Login ref={(loginForm) => { this.loginForm = loginForm }} logIn={this.props.logIn} />
-                                    </div>
+                                <button className='btn dropdown-toggle' data-toggle='dropdown' aria-haspopup="true" aria-expanded="false">Login </button>
+                                <div id='loginDropdown' className='dropdown-menu' role='menu'>
+                                    <Login ref={(loginForm) => { this.loginForm = loginForm }} logIn={this.props.logIn} />
                                 </div>
                             </li>
                         </ul>
-                        <Register ref={registerForm => { this.registerForm = registerForm }} logIn={this.props.logIn} />
                     </div>
                 </nav>
         )

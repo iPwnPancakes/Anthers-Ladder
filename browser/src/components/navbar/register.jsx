@@ -6,14 +6,6 @@ class Register extends React.Component {
         super(props);
     }
     
-    isVisible() {
-        return this.form.style.display === 'block';
-    }
-    
-    toggleVisible() {
-        this.form.style.display = (this.form.style.display === 'none') ? 'block' : 'none';
-    }
-    
     ifStringsSame(str, otherStr) {
         return str === otherStr;
     }
@@ -32,6 +24,7 @@ class Register extends React.Component {
         })
         .then(res => res.json())
         .then(res => {
+            console.log(res.username + ' registered!');
             this.props.logIn(res.username);
         })
         .catch(console.log)
@@ -48,8 +41,8 @@ class Register extends React.Component {
 
     render() {
         return (
-            <form id='register' className='container' ref={form => { this.form = form }} style={{ display: 'none' }}>
-                <div className='form-group'>
+            <form id='register' className='form-inline' ref={form => { this.form = form }}>
+                <div>
                     <label htmlFor='email'>Email</label>
                     <input
                         className='form-control form-control-sm'
@@ -59,7 +52,7 @@ class Register extends React.Component {
                         ref={email => { this.email = email }}
                     />
                 </div>
-                <div className='form-group'>
+                <div>
                     <label htmlFor='username'>Username</label>
                     <input 
                         className='form-control form-control-sm'
@@ -69,7 +62,7 @@ class Register extends React.Component {
                         ref={username => { this.username = username }}
                     />
                 </div>
-                <div className='form-group'>
+                <div>
                     <label htmlFor='password'>Password</label>
                     <input 
                         className='form-control form-control-sm'
@@ -79,8 +72,7 @@ class Register extends React.Component {
                         ref={(password) => { this.password = password }}
                     />
                 </div>
-                <div className='form-group'>
-                    <label htmlFor='confirmPassword'>Confirm Password</label>
+                <div>
                     <input 
                         className='form-control form-control-sm'
                         type='text' 
@@ -89,7 +81,13 @@ class Register extends React.Component {
                         ref={(confirmPassword) => { this.confirmPassword = confirmPassword }}
                     />
                 </div>
-                <button type='submit' className='btn btn-outline-success' onClick={this.handleSubmit.bind(this)}>Create Account</button>
+                <button
+                    type='submit' 
+                    className='btn btn-outline-success btn-block formButton' 
+                    onClick={this.handleSubmit.bind(this)}
+                > 
+                    Create Account
+                </button>
             </form>
         )
     }
