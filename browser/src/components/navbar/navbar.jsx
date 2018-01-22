@@ -26,11 +26,11 @@ class Navigation extends React.Component {
                         </ul>
                         <ul id='forms' className='nav navbar-right'>
                             <li className='nav-item'> 
-                                <button className='btn' onClick={this.onRegisterClick.bind(this)}>Register</button> 
+                                <button className='btn'>Register</button> 
                             </li>
                             <li className='nav-item dropdown'>
                                 <div className='btn-group'>
-                                <button href='#' className='btn dropdown-toggle' data-toggle='dropdown' onClick={this.onLoginNavClick.bind(this)} aria-haspopup="true" aria-expanded="false">Login </button>
+                                <button href='#' className='btn dropdown-toggle' data-toggle='dropdown' aria-haspopup="true" aria-expanded="false">Login </button>
                                     <div id='loginDropdown' className='dropdown-menu' role='menu'>
                                         <Login ref={(loginForm) => { this.loginForm = loginForm }} logIn={this.props.logIn} />
                                     </div>
