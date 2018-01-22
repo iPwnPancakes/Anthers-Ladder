@@ -3,17 +3,17 @@ const DBPORT = process.env.DBPORT || 27017;
 
 let db = undefined;
 
-function makeConnection(callback) {
+const makeConnection = (callback) => {
     MongoClient.connect('mongodb://localhost:27017/', (err, database) => {
         db = database.db('anthersladder');
         return callback(err);
     });
 }
 
-function getConnection() { return db }
+const getConnection = () => db;
 
-function closeConnection() { db.close() }
+const closeConnection = () => db.close();
 
-function test() { console.log(db) }
+const test = () => console.log(db);
 
 module.exports = { makeConnection, getConnection,closeConnection, test }
