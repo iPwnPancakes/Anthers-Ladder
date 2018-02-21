@@ -30,8 +30,40 @@ MongoClient.connect('mongodb://localhost:27017/', (err, database) => {
 
 // App logic
 io.on('connection', (socket) => {
+    // Collect all online users and send it to the socket
+    db.collection('online').find({}, { _id: 0, username: 1 }).toArray((err, array) => {
+        if(err) throw Error(err);
+        let usernames = array.map((user) => user.username);
+        socket.emit('online users', usernames);
+    });
+    
     socket.on('broadcasted message', (message) => {
         socket.broadcast.emit('broadcasted message', message);
+    });
+    
+    socket.on('user login', (username) => {
+        db.collection('online').find({ username: username }).toArray((err, arr) => {
+            if(err) throw Error(err);
+            if(arr.length === 0) {
+                db.collection('online').insert({ username: username }, (err) => { if(err) throw Error(err) });
+                socket.broadcast.emit('user login', username);
+            }
+        })
+    });
+    
+    socket.on('user logoff', (username) => {
+        db.collection('online').remove({ username: username }, (err) => {
+            if(err) throw Error(err);
+        });
+        socket.broadcast.emit('user logoff', username);
+    });
+    
+    socket.on('close', username => {
+        if(username) {
+            db.collection('online').remove({ username: username }, (err) => {
+                if(err) throw Error(err);
+            });
+        }
     });
 });
 
